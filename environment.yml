@@ -1,0 +1,12 @@
+name: remy_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - plotly
+  - requests
+  - pandas
+  - ipykernel
+  - nbformat
+
