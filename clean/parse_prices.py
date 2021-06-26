@@ -4,7 +4,7 @@ from datetime import datetime
 
 if __name__ == "__main__":
     
-    with open('data/prices_raw.json', 'r') as f:
+    with open('../data/prices_raw.json', 'r') as f:
         prices = json.load(f)
 
     columns = ['unix_time', 'low', 'high', 'open', 'close', 'volume']
@@ -20,4 +20,4 @@ if __name__ == "__main__":
 
     df = df.sort_values(['asset', 'unix_time'])
 
-    df.to_csv('data/prices_formatted.csv', index=False)    
+    df.to_csv('../data/prices_formatted.csv', index=False)    

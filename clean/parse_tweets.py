@@ -3,6 +3,7 @@ import json
 from emoji import UNICODE_EMOJI
 from typing import Tuple, List
 import pandas as pd
+import sys
 
 
 def get_local_and_unix_time(time_string: str) -> Tuple[str, str]:
@@ -111,7 +112,6 @@ def parse_tweets_to_df(tweets: List[dict]) -> pd.DataFrame:
         # Parsed Index:         0          1      2:4              4:-1                                          -1
         text = [i for i in tweet['text'].split() if i not in UNICODE_EMOJI['en']] # drops emojis
         
-        formatted_tweet['tweet_id']    = tweet['id']
         formatted_tweet['local_time']  = local_time
         formatted_tweet['unix_time']   = unix_time
         formatted_tweet['asset']       = text[1].replace('#', '')
@@ -137,11 +137,14 @@ def parse_tweets_to_df(tweets: List[dict]) -> pd.DataFrame:
 
 if __name__ == "__main__":
 
-    with open('data/tweets_raw.json', 'r') as f:
+    suffix = sys.argv[1] if len(sys.argv) > 1 else ''
+
+    with open(f'../data/tweets_raw{suffix}.json', 'r') as f:
         tweets = json.load(f)['data']
 
     tweets_df = parse_tweets_to_df(tweets)
 
     tweets_df = tweets_df.drop_duplicates()
+    tweets_df = tweets_df.sort_values('unix_time')
 
-    tweets_df.to_csv('data/tweets_formatted.csv', index=False)
+    tweets_df.to_csv(f'../data/tweets_formatted{suffix}.csv', index=False)

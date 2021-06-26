@@ -9,7 +9,7 @@ import base64
 from datetime import datetime
 from typing import List
 from dotenv import load_dotenv
-load_dotenv('.env')
+load_dotenv('../.env')
 
 COINBASE_API_KEY = os.environ['COINBASE_API_KEY']
 COINBASE_API_SECRET = os.environ['COINBASE_API_SECRET']
@@ -79,7 +79,7 @@ def get_prices(asset: str, earliest_tweet: int, latest_tweet: int) -> List:
 
 if __name__ == "__main__":
 
-    tweets = pd.read_csv('data/tweets_formatted.csv') 
+    tweets = pd.read_csv('../data/tweets_formatted.csv') 
 
     # tweets_by_asset = tweets.groupby('asset').size().reset_index(name='count')
     # tweets_by_asset = tweets_by_asset.sort_values('count', ascending=False)
@@ -88,8 +88,8 @@ if __name__ == "__main__":
     earliest_tweet = tweets['unix_time'].min()
     latest_tweet = tweets['unix_time'].max()
 
-    assets = ['BTC', 'ETH', 'USDT']
+    assets = ['BTC', 'ETH']
     prices = {asset: get_prices(asset, earliest_tweet, latest_tweet) for asset in assets}
 
-    with open('data/prices_raw.json', 'w') as f:
+    with open('../data/prices_raw.json', 'w') as f:
         f.write(json.dumps(prices, indent=True))

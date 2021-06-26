@@ -3,7 +3,7 @@ import json
 import requests
 from typing import List
 from dotenv import load_dotenv
-load_dotenv('.env')
+load_dotenv('../.env')
 
 WHALE_ALERT_USER_ID = '1039833297751302144'
 TWITTER_BEARER_TOKEN = os.environ['TWITTER_BEARER_TOKEN']
@@ -46,5 +46,5 @@ if __name__ == "__main__":
 
     tweets = pull_whale_tweets()
 
-    with open('data/tweets_raw.json', 'w') as f:
+    with open('../data/tweets_raw_sample.json', 'w') as f:
         f.write(json.dumps({'data': tweets}, indent=True))
