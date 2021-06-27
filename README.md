@@ -21,8 +21,8 @@
     * Parses the coinbase JSON response into a CSV
 
 ## Analysis
-* `plot_whale_tweets.ipynb`
+* `plot_whale_tweets.ipynb` -> `plots/{ETC/BTC}.html`
     * Using a sample of tweets, plots the tweet time on top of a price chart
-* `plot_whale_alert_average_impact.ipynb`
+* `plot_whale_alert_average_impact.ipynb` -> `plots/average_price_impact_{$}M.html`
     * Plots the average price movement surrounding whale tweets of various categories
     
