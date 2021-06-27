@@ -1,4 +1,5 @@
 data
+plots
 .env
 .DS_Store
 .vscode
